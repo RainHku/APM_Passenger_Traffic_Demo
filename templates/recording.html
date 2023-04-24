@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Responsive Video Playlist Tutorial</title>
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href='../static/style2.css'/>
+   <link rel="stylesheet" href='../static/style.css'/>
+</head>
+<body>
+<h1>APM Passenger Traffic_Recording</h1>
+<div class="container">
+   <div class="main-video-container">
+      <video src="recording/1.mp4" id="p_video" loop controls class="main-video"></video>
+      <h3 id="show_video_name"></h3>
+   </div>
+   <div class="video-list-container" id="v_ul">
+
+   </div>
+</div>
+
+
+<script type="text/javascript">
+        vDatas = [];
+        for (var i = 0; i < 10; i++) {
+            j = i + 1;
+		    vDatas[i] = {name:j + ".mp4", src:"../static/recording/" + j + ".mp4"}
+		    console.log(vDatas[i]);
+		}
+		var vUl = document.getElementById('v_ul');
+		var pVideo = document.getElementById('p_video');
+		var sVideoName = document.getElementById('show_video_name');
+		pVideo.src = vDatas[0].src;
+		sVideoName.innerHTML = vDatas[0].name;
+		for (var i = 0; i < vDatas.length; i++) {
+		    var string =  vUl.innerHTML +
+		    '<div class="list" onclick="click2(' + i +')" ><video src=' +  vDatas[i].src + ' class="list-video"></video><h3>' + vDatas[i].name + '</h3></div>'
+			vUl.innerHTML = string
+			console.log(string);
+		}
+		function click2(itemCode) {
+			console.log(itemCode);
+			pVideo.src = vDatas[itemCode].src;
+			sVideoName.innerHTML = vDatas[itemCode].name;
+		}
+</script>
+</body>
+</html>
